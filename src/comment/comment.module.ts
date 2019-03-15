@@ -10,4 +10,4 @@ import { Comment } from './entity/comment.entity';
     controllers: [CommentController],
     providers: [CommentService],
 })
-export class CommentaireModule {}
+export class CommentModule {}

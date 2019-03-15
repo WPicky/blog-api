@@ -27,17 +27,17 @@ export class User {
     })
     category: UserCategory;
 
-     // @OneToMany(type => Comment, comment => comment.author)
-    // comments: Comment[];
+    @OneToMany(type => Comment, comment => comment.author)
+    comments: Comment[];
 
     @CreateDateColumn()
-    created: Date;
+    createdAt: Date;
 
     @Column({ type: 'varchar', name: 'email', length: 200 })
     email: string;
 
     @Column({ type: 'varchar', name: 'first_name', length: 100 })
-    firstName: string;
+    firstname: string;
 
     @PrimaryGeneratedColumn('uuid', { name: 'id' })
     id: string;
@@ -46,7 +46,7 @@ export class User {
     isAuthor: boolean;
 
     @Column({ type: 'varchar', name: 'last_name', length: 100 })
-    lastName: string;
+    lastname: string;
 
     @Column({ type: 'varchar', name: 'mobile_phone', length: 31 })
     mobilePhone: string;
@@ -55,13 +55,13 @@ export class User {
     password: string;
 
     @UpdateDateColumn()
-    updated: Date;
+    updatedAt: Date;
 
     constructor(copy: Partial<User> = {}) {
         this.email = getOrDefault(copy.email, '');
         this.password = getOrDefault(copy.password, '');
-        this.lastName = getOrDefault(copy.lastName, '');
-        this.firstName = getOrDefault(copy.firstName, '');
+        this.lastname = getOrDefault(copy.lastname, '');
+        this.firstname = getOrDefault(copy.firstname, '');
         this.mobilePhone = getOrDefault(copy.mobilePhone, '');
         this.avatar = getOrDefault(copy.avatar, undefined) as any;
         this.category = getOrDefault(copy.category, undefined) as any;
