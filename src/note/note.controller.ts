@@ -1,9 +1,9 @@
 import { Controller, Get, Body, Param, Post, Put, Delete } from '@nestjs/common';
 import { NoteService } from './note.service';
-import { Note } from '../../entity/note.entity';
+import { Note } from './entity/note.entity';
 
 // DTO
-import { NoteDto } from '../../dto/note.dto';
+import { NoteDto } from './dto/note.dto';
 
 
 @Controller('note')
@@ -11,7 +11,7 @@ export class NoteController {
     constructor(private readonly noteService: NoteService) {}
 
     @Get()
-    findAll(): Promise<NoteEntity[]> {
+    findAll(): Promise<Note[]> {
         return this.noteService.findAll();
     }
 
