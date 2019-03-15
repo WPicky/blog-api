@@ -1,6 +1,6 @@
 import { Controller, Get, Body, Param, Post, Put, Delete } from '@nestjs/common';
 import { ArticleService } from './article.service';
-import { ArticleEntity } from './entity/article.entity';
+import { Article } from './entity/article.entity';
 
 // DTO
 import { ArticleDto } from './dto/article.dto';
@@ -11,7 +11,7 @@ export class ArticleController {
     constructor(private readonly articleService: ArticleService) {}
 
     @Get()
-    findAll(): Promise<ArticleEntity[]> {
+    findAll(): Promise<Article[]> {
         return this.articleService.findAll();
     }
 

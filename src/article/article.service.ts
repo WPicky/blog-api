@@ -1,22 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { ArticleEntity } from './entity/article.entity';
+import { Article } from './entity/article.entity';
 import { ArticleDto } from './dto/article.dto';
 
 
 @Injectable()
 export class ArticleService {
     constructor(
-        @InjectRepository(ArticleEntity)
-        private readonly articleRepository: Repository<ArticleEntity>,
+        @InjectRepository(Article)
+        private readonly articleRepository: Repository<Article>,
     ) {}
 
-    async findAll(): Promise<ArticleEntity[]> {
+    async findAll(): Promise<Article[]> {
         return await this.articleRepository.find();
     }
 
-    async findById(id: string): Promise<ArticleEntity> {
+    async findById(id: string): Promise<Article> {
         try {
             return await this.articleRepository.findOne(id);
         } catch (err) {
@@ -24,7 +24,7 @@ export class ArticleService {
         }
     }
 
-    async findByUserId(userId: string): Promise<ArticleEntity[]> {
+    async findByUserId(userId: string): Promise<Article[]> {
         try {
             return await this.articleRepository.find({ where: { authorId: userId } });
         } catch (err) {
@@ -32,8 +32,8 @@ export class ArticleService {
         }
     }
 
-    async insert(article: ArticleDto): Promise< ArticleEntity> {
-        const newArticle = new  ArticleEntity();
+    async insert(article: ArticleDto): Promise< Article> {
+        const newArticle = new  Article();
 
         Object.keys(article).forEach((key) => {
             newArticle[key] = article[key];
@@ -46,7 +46,7 @@ export class ArticleService {
         }
     }
 
-    async update(oldArticle:  ArticleEntity, updated_values: ArticleDto): Promise< ArticleEntity> {
+    async update(oldArticle:  Article, updated_values: ArticleDto): Promise< Article> {
         const updatedArticle = oldArticle;
 
         Object.keys(updated_values).forEach((key) => {

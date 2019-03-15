@@ -1,28 +1,23 @@
 import { Entity, Column, PrimaryGeneratedColumn, UpdateDateColumn, CreateDateColumn, JoinColumn, ManyToOne } from 'typeorm';
-import { User } from '../../users/entity/user.entity';
+import { Article } from '../../article/entity/article.entity';
+import { User} from '../../users/entity/user.entity';
 
 @Entity()
-export class Article {
+export class Note {
+
     @PrimaryGeneratedColumn()
     id: number;
-
-    @Column({ length: 255 })
-    title: string;
 
     @JoinColumn({ name: 'author_id' })
     @ManyToOne(type => User, author => author.id)
     authorId: number;
 
-    @Column( "text")
-    content: string
+    @JoinColumn({ name: 'article_id' })
+    @ManyToOne(type => Article, article => article.id)
+    articleId: number;
 
-    @Column({length: 40})
-    likes: Number;
-
-    @Column({length: 40})
-    disLikes: Number;
-
-//(picture: Buffer | File;)
+    @Column()
+    note: number
 
     @CreateDateColumn({ type: 'timestamp' })
     createdAt: Date;
