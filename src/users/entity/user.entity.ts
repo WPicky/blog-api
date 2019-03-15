@@ -27,8 +27,8 @@ export class User {
     })
     category: UserCategory;
 
-    @OneToMany(type => Comment, comment => comment.author)
-    comments: Comment[];
+     // @OneToMany(type => Comment, comment => comment.author)
+    // comments: Comment[];
 
     @CreateDateColumn()
     created: Date;
@@ -65,7 +65,7 @@ export class User {
         this.mobilePhone = getOrDefault(copy.mobilePhone, '');
         this.avatar = getOrDefault(copy.avatar, undefined) as any;
         this.category = getOrDefault(copy.category, undefined) as any;
-        this.comments = getCopyConstructions(Comment, copy.comments) as any;
+       // this.comments = getCopyConstructions(Comment, copy.comments) as any;
         this.id = getOrDefault(copy.id, undefined);
     }
 }
